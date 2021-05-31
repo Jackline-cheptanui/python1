@@ -36,12 +36,12 @@ class Account:
         else:
             self.balance-=amount
             now=datetime.now()
-            transaction= {
+            withdrawal= {
                  "amount":amount,
                   "time":now,
                    "Narration":"deposit"
              }
-            self.statement.append(transaction)
+            self.statement.append(withdrawal)
             return self.show_balance()
 
     def borrow(self,amount):
