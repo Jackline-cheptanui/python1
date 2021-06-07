@@ -5,6 +5,7 @@ class Account:
      self.phone_number=phone_number
      self.balance=0
      self.statement=[]
+     self.loan=0
 
 
 
@@ -44,11 +45,6 @@ class Account:
             self.statement.append(withdrawal)
             return self.show_balance()
 
-    def borrow(self,amount):
-        return f"Hello{self.name} you hava take a loan of{amount}"  
-
-    def repay(self,amount):
-        return f"Hello{self.name}you have repaid a loan of{amount}"
 
     def show_statement(self):
 
@@ -58,39 +54,38 @@ class Account:
             time=transaction["time"]
             date=time.strftime("%d/%m/%y")
             print(f"{date}:{narration} {amount}")
-            
 
+    def borrow(self,amount,loan):
+        if amount<=0:
+            return f"Hello{self.amount} you have no loan" 
+        elif (self.loan)>0:
+            return f"Hello{self.amount}you will have a loan"
+        elif amount<0.1:
+            return f"Hello{self.amount}you do not qualify the loan"
+        else:
+            loan=amount*1.05
+            self.loan=loan
+            self.balance+=amount
+            return f"Hello{self.amount}customer you have save {amount}"
 
+    def repay(self,amount):
+        if amount<0:
+            return f"Hello{self.loan} you are to repay your {amount}" 
+        elif amount<self.loan:
+                self.loan-=amount
+                return f"Hello {self.loan} dear customer you have repay your {amount}"
+        elif amount > self.loan:
 
-
-
-    
-        
-
-
-
-
-    
-
-
-
-    
-
-
-        
-    
-         
-
-
-          
-              
-          
-          
-      
-          
-
-
-  
-
+            diff=amount-self.loan
+            self.loan = 0
+            self.deposit(diff)
+            now=datetime.now()
+            transaction= {
+                    "amount":amount,
+                    "time":now,
+                   "Narration":"deposit"
+             }
+            self.statement.append(transaction)
+            return f"Dear customer you have repay successfully{self.deposit}"
 
 
