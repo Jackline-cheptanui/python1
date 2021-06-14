@@ -17,6 +17,9 @@ class Student:
         return f"Hello{ self.firstName} welcome to {self.school}" 
     def initial(self) :
         return f"hello {self.firstName} your initial are"
+
+    
+
     
 
 
